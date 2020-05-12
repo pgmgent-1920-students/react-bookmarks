@@ -3,3 +3,4 @@ Bookmark app with React | Graduaat Programmeren | Artevelde University of Applie
 
 - https://console.firebase.google.com/
 - https://googleapis.dev/nodejs/firestore/latest/CollectionReference.html#get
+- https://github.com/marak/Faker.js/
