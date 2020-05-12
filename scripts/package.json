@@ -20,6 +20,7 @@
     "test:fb": "babel-node firebase.js --debug --presets airbnb",
     "seeder:bookmarks": "babel-node bookmarks_seeder.js --debug --presets airbnb",
     "seeder:messages": "babel-node messages_seeder.js --debug --presets airbnb",
+    "delete:bookmarks": "babel-node collection_delete.js bookmarks 50 --debug --presets airbnb",
     "delete:messages": "babel-node collection_delete.js messages 50 --debug --presets airbnb"
   }
 }
