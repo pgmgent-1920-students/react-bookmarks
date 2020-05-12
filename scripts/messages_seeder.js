@@ -42,6 +42,7 @@ import { admin, app, db, generateTimestamps } from './firebase';
     console.log(`Failed to create document: ${err}`);
   });*/
 
+  // Create a Message
   const createMessage = (content, sender) => {
     // Add a document with faker
     const data = {
@@ -55,10 +56,18 @@ import { admin, app, db, generateTimestamps } from './firebase';
     });
   };
 
+  // Create messages via promises
+  const createMessages = async (n = 20) => {
+    const promises = [];
+    for (let i=0; i < n;i++) {
+      promises.push(createMessage(faker.lorem.paragraph(), faker.name.findName()));
+    }
+    return await Promise.all(promises);
+  };
+
+  await createMessages(24);
   
-  for (let i=0; i < 200;i++) {
-    createMessage(faker.lorem.paragraph(), faker.name.findName());
-  }
+  
 
 })();
 
