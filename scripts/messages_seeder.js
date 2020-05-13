@@ -11,7 +11,6 @@ import { admin, app, db, generateTimestamps } from './firebase';
   // Loop through the documents of the collection
   const result = await collectionRef.get().then(querySnapshot => {
     const size = querySnapshot.size;
-    console.log(size);
     querySnapshot.forEach(documentSnapshot => {
       const id = documentSnapshot.id;
       messages.push({
@@ -48,7 +47,7 @@ import { admin, app, db, generateTimestamps } from './firebase';
     const data = {
       content: content,
       sender: sender,
-      createdAt: Date.now()
+      ...generateTimestamps()
     };
 
     collectionRef.add(data).then(documentReference => {
@@ -65,24 +64,6 @@ import { admin, app, db, generateTimestamps } from './firebase';
     return await Promise.all(promises);
   };
 
-  await createMessages(24);
-  
-  
+  await createMessages(24); 
 
 })();
-
-
-
-/*
-collectionRef.add({foo: 'bar'}).then(documentReference => {
-  console.log(documentReference.path);
-});
-
-collectionRef.doc().create({bar: 'foo'}).then(writeResult => {
-  console.log(writeResult);
-});
-
-collectionRef.doc('pol').set({bar: 'foo'}, { merge: true}).then(writeResult => {
-  console.log(writeResult);
-});
-*/

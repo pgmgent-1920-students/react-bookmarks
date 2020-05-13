@@ -16,11 +16,11 @@ const ProxyProvider = ({children}) => {
     <ProxyContext.Provider value={{getSEOFromUrl}}>
       {children}
     </ProxyContext.Provider>
-  )
+  );
 };
 
 export {
   ProxyContext,
   ProxyProvider,
   useProxyContext,
-}
+};

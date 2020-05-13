@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import './App.scss';
 import { SEOSearchForm, SEOSearchResult } from './components';
-import { ProxyProvider, FirebaseProvider, FirestoreProvider } from './services';
+import { AuthProvider, ProxyProvider, FirebaseProvider, FirestoreProvider } from './services';
 
 function App() {
   const [seoResult, setSEOResult] = useState();
@@ -13,12 +14,14 @@ function App() {
   return (
     <div className="app">
       <FirebaseProvider>
-        <FirestoreProvider>
-          <ProxyProvider>
-            <SEOSearchForm searchResult={handleSearchResult} />
-            <SEOSearchResult data={seoResult} />
-          </ProxyProvider>
-        </FirestoreProvider>
+        <AuthProvider>
+          <FirestoreProvider>
+            <ProxyProvider>
+              <SEOSearchForm searchResult={handleSearchResult} />
+              <SEOSearchResult data={seoResult} />
+            </ProxyProvider>
+          </FirestoreProvider>
+        </AuthProvider>
       </FirebaseProvider>
     </div>
   );
