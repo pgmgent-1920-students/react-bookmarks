@@ -8,7 +8,9 @@ const ProxyProvider = ({children}) => {
 
   const getSEOFromUrl = async (url) => {
     const response = await fetch(`${PROXY_SEO_URL}${url}`);
-    const jsonData = await response.json();
+    let jsonData = await response.json();
+    const jsonDataString = JSON.stringify(jsonData).replace(/http/gi, 'https');
+    jsonData = JSON.parse(jsonDataString);
     return jsonData;
   };
 
