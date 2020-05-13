@@ -17,7 +17,7 @@
     "babel-preset-airbnb": "^5.0.0"
   },
   "scripts": {
-    "test:fb": "babel-node firebase.js --debug --presets airbnb",
+    "test:firebase": "babel-node firebase.js --debug --presets airbnb",
     "seeder:bookmarks": "babel-node bookmarks_seeder.js --debug --presets airbnb",
     "seeder:messages": "babel-node messages_seeder.js --debug --presets airbnb",
     "delete:bookmarks": "babel-node collection_delete.js bookmarks 50 --debug --presets airbnb",
