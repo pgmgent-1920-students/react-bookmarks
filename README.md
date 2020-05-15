@@ -40,3 +40,4 @@ REACT_APP_APP_ID=
 - https://googleapis.dev/nodejs/firestore/latest/CollectionReference.html#get
 - https://github.com/marak/Faker.js/
 - https://firebase.google.com/docs/firestore
+- https://firebase.google.com/docs/auth/admin
