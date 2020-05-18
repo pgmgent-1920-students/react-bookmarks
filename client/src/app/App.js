@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
+import React, {} from 'react';
+import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
+
+import { AuthProvider, FirebaseProvider, FirestoreProvider } from './services';
+import { RouteWithLayout } from './utilities';
+
+import { BaseLayout } from './layouts';
+import { HomePage, MessagesPage, SignInPage, BookmarksPage} from './pages';
+
+import * as Routes from './routes';
 
 import './App.scss';
-import { SEOSearchForm, SEOSearchResult } from './components';
-import { AuthProvider, ProxyProvider, FirebaseProvider, FirestoreProvider,  useFirestore } from './services';
-import { MessagesList } from './components/message';
-import { BookmarksList } from './components/bookmark';
 
 function App() {
-  const [seoResult, setSEOResult] = useState();  
-
-  const handleSearchResult = async (result) => {
-    setSEOResult(result);
-  };
-
   return (
     <div className="app">
       <FirebaseProvider>
         <AuthProvider>
           <FirestoreProvider>
-            <div className="container">
-              <MessagesList />
-            </div>
-            <ProxyProvider>
-              <SEOSearchForm searchResult={handleSearchResult} />
-              <SEOSearchResult data={seoResult} />
-            </ProxyProvider>
-            <div className="container">
-              <BookmarksList />
-            </div>
+            <Router basename={'/react-firebase'}>
+              <Switch>
+                <RouteWithLayout exact path={Routes.LANDING} layout={ BaseLayout } component={ HomePage }/>
+                <Redirect from={Routes.HOME} to={Routes.LANDING}/>
+                <RouteWithLayout exact path={Routes.MESSAGES} layout={ BaseLayout } component={ MessagesPage }/>
+                <RouteWithLayout exact path={Routes.BOOKMARKS} layout={ BaseLayout } component={ BookmarksPage }/>
+                <RouteWithLayout exact path={Routes.AUTH_SIGN_IN} layout={ BaseLayout } component={ SignInPage }/>
+              </Switch>
+            </Router>
           </FirestoreProvider>
         </AuthProvider>
       </FirebaseProvider>

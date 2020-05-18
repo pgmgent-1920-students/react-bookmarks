@@ -1,6 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useFirestore } from '../../services';
 
+import './BookmarksList.scss';
+
 const BookmarksList = () => {
   const [bookmarks, setBookmarks] = useState();
   const {getBookmarks} = useFirestore();
@@ -12,23 +14,25 @@ const BookmarksList = () => {
     }
 
     fetchData();
-  }, []);
+  }, [getBookmarks]);
 
   return (
-    <div className="row bookmarks-list">
+    <div className="row align-items-stretch bookmarks-list">
       {!!bookmarks
-      ? bookmarks.map((bm) => {
+      ? bookmarks.map((bookmark) => {
         return (
-          <div className="col-12 col-md-6 col-lg-4 col-xl-3" key={bm.uid}>
-            <article className="bookmark" data-id={bm.uid}>
-              <h1>{!!bm.icon ? <img src={bm.icon}/> : <Fragment></Fragment>}{bm.title}</h1>
-              {!!bm.image
-              ? <picture>
-                  <img src={bm.image} />
-                </picture>
-              : <Fragment></Fragment>
-              }
-            </article>
+          <div className="col-12 col-md-6 col-lg-4 col-xl-3" key={bookmark.uid}>
+            <div className="card bookmark" data-id={bookmark.uid}>
+              <picture className="card-img-top bookmark__picture">
+                {!!bookmark.image ? <img src={bookmark.image} alt={bookmark.title} /> : <Fragment></Fragment>}
+              </picture>
+              <div className="card-body">
+                <h5 className="card-title">{bookmark.title}</h5>                
+              </div>
+              <div className="card-body">
+                <a href={bookmark.url} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit website</a>               
+              </div>
+            </div>
           </div>
         )
       })

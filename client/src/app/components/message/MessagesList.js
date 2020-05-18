@@ -12,21 +12,20 @@ const MessagesList = () => {
     }
 
     fetchData();    
-  }, []);
+  }, [getMessages]);
 
   return (
-    <div className="messages-list">
+    <div className="row messages-list">
     {!!messages 
       ? messages.map((msg) => {
         return (
-          <article className="message" key={msg.uid}>
-            <p>{msg.createdAt}</p>
-            <div className="message__body">
-              {msg.content}
-            </div>
-            <div className="">
+          <article className="media message" key={msg.uid}>
+            <span className="">
               {msg.sender}
-            </div>
+            </span>
+            <div className="media-body message__body">
+              {msg.content}
+            </div>            
           </article>
         )
       })

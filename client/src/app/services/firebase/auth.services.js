@@ -1,4 +1,4 @@
-import { default as React, useContext, useState, useEffect } from 'react';
+import { default as React, useContext } from 'react';
 import 'firebase/auth';
 
 import { useFirebase } from './firebase.services';
