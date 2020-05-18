@@ -8,7 +8,6 @@ const BookmarksList = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getBookmarks();
-      console.log(data);
       setBookmarks(data);
     }
 

@@ -11,7 +11,7 @@ const FirestoreProvider = ({children}) => {
   const db = app.firestore();
 
   const getMessages = async () => {
-    const query = db.collection('messages');
+    const query = db.collection('messages').orderBy('createdAt', 'desc');
     const querySnapshot = await query.get();
     const messages = querySnapshot.docs.map((doc) => {
       return {
@@ -23,7 +23,7 @@ const FirestoreProvider = ({children}) => {
   };
 
   const getBookmarks = async () => {
-    const query = db.collection('bookmarks');
+    const query = db.collection('bookmarks').orderBy('createdAt', 'desc');
     const querySnapshot = await query.get();
     const bookmarks = querySnapshot.docs.map((doc) => {
       return {
@@ -34,8 +34,14 @@ const FirestoreProvider = ({children}) => {
     return bookmarks;
   };
 
+  const addBookmark = async (bookmark) => {
+    const ref = db.collection('bookmarks');
+    const docRef = await ref.add(bookmark);
+    return docRef;
+  };
+
   return (
-    <FirestoreContext.Provider value={{getBookmarks, getMessages}}>
+    <FirestoreContext.Provider value={{addBookmark, getBookmarks, getMessages}}>
       {children}
     </FirestoreContext.Provider>
   );

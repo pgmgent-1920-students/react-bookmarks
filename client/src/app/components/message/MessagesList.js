@@ -20,6 +20,7 @@ const MessagesList = () => {
       ? messages.map((msg) => {
         return (
           <article className="message" key={msg.uid}>
+            <p>{msg.createdAt}</p>
             <div className="message__body">
               {msg.content}
             </div>

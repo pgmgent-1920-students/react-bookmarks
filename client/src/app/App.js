@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 import './App.scss';
 import { SEOSearchForm, SEOSearchResult } from './components';
-import { AuthProvider, ProxyProvider, FirebaseProvider, FirestoreProvider } from './services';
+import { AuthProvider, ProxyProvider, FirebaseProvider, FirestoreProvider,  useFirestore } from './services';
 import { MessagesList } from './components/message';
 import { BookmarksList } from './components/bookmark';
 
 function App() {
-  const [seoResult, setSEOResult] = useState();
+  const [seoResult, setSEOResult] = useState();  
 
-  const handleSearchResult = (result) => {
+  const handleSearchResult = async (result) => {
     setSEOResult(result);
   };
 

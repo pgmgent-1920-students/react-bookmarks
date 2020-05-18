@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
-import { useProxyContext } from '../services';
+import { useProxyContext, useFirestore } from '../services';
 
 function SEOSearchForm({searchResult}) {
   const [url, setUrl] = useState('');
   const {getSEOFromUrl} = useProxyContext();
+  const {addBookmark} = useFirestore();
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
     const result = await getSEOFromUrl(url);
     searchResult(result);
+
+    if (result) {
+      const docRef = await addBookmark(result);
+      console.log(docRef);
+    }
   };
 
   return (
