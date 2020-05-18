@@ -38,6 +38,6 @@ import { admin, app, auth, db, generateTimestamps, generateValueBetweenMinAndMax
   /*
    * Create Models in Auth
   */
-  await createUsers(10);
+  await createUsers(16);
 
 })();
