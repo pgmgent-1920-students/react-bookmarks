@@ -28,6 +28,9 @@ const Header = ({children}) => {
             <li className="nav-item">
               <NavLink to={Routes.BOOKMARKS} className="nav-link" activeClassName="active">Bookmarks</NavLink>
             </li>          
+            <li className="nav-item">
+              <NavLink to={Routes.POKEMONS} className="nav-link" activeClassName="active">Pokemons</NavLink>
+            </li> 
           </ul>
           <CourtesyNavigation />
         </div>
