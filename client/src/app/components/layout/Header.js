@@ -9,7 +9,7 @@ import './Header.scss';
 
 const Header = ({children}) => {
   return (
-    <header className="header">
+    <header className="app-header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light navigation">
         <h1 className="navbar-brand">
           <Link to={Routes.LANDING} className="logo__link">Graduaat Programmeren</Link>
