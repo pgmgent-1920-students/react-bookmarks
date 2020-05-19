@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useFirestore } from '../../services';
 
+import './MessagesList.scss';
+
 const MessagesList = () => {
   const [messages, setMessages] = useState();
   const {getMessages} = useFirestore();
@@ -19,14 +21,16 @@ const MessagesList = () => {
     {!!messages 
       ? messages.map((msg) => {
         return (
-          <article className="media message" key={msg.uid}>
-            <span className="">
-              {msg.sender}
-            </span>
-            <div className="media-body message__body">
-              {msg.content}
-            </div>            
-          </article>
+          <div className="col-12" key={msg.uid}>
+            <article className="row message" data-id={msg.uid}>
+              <span className="col-3 message__sender">
+                {msg.sender}
+              </span>
+              <div className="col-9 message__body">
+                {msg.content}
+              </div>            
+            </article>
+          </div>
         )
       })
       : <p>No messages</p>

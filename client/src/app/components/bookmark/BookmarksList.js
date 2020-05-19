@@ -26,8 +26,9 @@ const BookmarksList = () => {
               <picture className="card-img-top bookmark__picture">
                 {!!bookmark.image ? <img src={bookmark.image} alt={bookmark.title} /> : <Fragment></Fragment>}
               </picture>
-              <div className="card-body">
-                <h5 className="card-title">{bookmark.title}</h5>                
+              <div className="card-body">              
+                <h6 class="card-subtitle mb-2 text-muted">{bookmark.provider}</h6>
+                <h5 className="card-title  text-truncate">{bookmark.title}</h5>                
               </div>
               <div className="card-body">
                 <a href={bookmark.url} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit website</a>               
