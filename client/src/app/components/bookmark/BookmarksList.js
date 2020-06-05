@@ -1,5 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
 import { useFirestore } from '../../services';
+import * as Routes from '../../routes';
 
 import './BookmarksList.scss';
 
@@ -31,6 +34,7 @@ const BookmarksList = () => {
                 <h5 className="card-title  text-truncate">{bookmark.title}</h5>                
               </div>
               <div className="card-body">
+                <Link to={Routes.BOOKMARK_DETAIL.replace(':id', bookmark.uid)} className="btn btn-primary">Detail</Link>
                 <a href={bookmark.url} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit website</a>               
               </div>
             </div>

@@ -34,6 +34,15 @@ const FirestoreProvider = ({children}) => {
     return bookmarks;
   };
 
+  const getBookmark = async (id) => {
+    const docRef = await db.collection('bookmarks').doc(id);
+    const docSnapshot = await docRef.get();
+    return {
+      uid: docSnapshot.id,
+      ...docSnapshot.data()
+    };
+  };
+
   const getPokemons = async () => {
     const query = db.collection('pokemons').orderBy('name', 'asc');
     const querySnapshot = await query.get();
@@ -53,7 +62,7 @@ const FirestoreProvider = ({children}) => {
   };
 
   return (
-    <FirestoreContext.Provider value={{addBookmark, getBookmarks, getMessages, getPokemons}}>
+    <FirestoreContext.Provider value={{addBookmark, getBookmarks, getBookmark, getMessages, getPokemons}}>
       {children}
     </FirestoreContext.Provider>
   );
